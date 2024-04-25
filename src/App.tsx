@@ -1,5 +1,7 @@
+import { TooltipDemo } from "./demos/Tooltip/TooltipDemo";
+
 function App() {
-  return <>App</>;
+  return <><TooltipDemo /></>;
 }
 
 export default App;
