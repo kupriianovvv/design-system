@@ -1,5 +1,5 @@
-import { ReactElement, RefObject, useEffect, useRef, useState } from "react";
-import styles from "./Tooltip.module.css";
+import { ReactElement, RefObject, useCallback, useEffect, useRef, useState } from "react";
+import "./Tooltip.css";
 
 type TooltipProps = {
   tooltipContent: string;
@@ -15,16 +15,16 @@ export const Tooltip = ({
   renderElementToWrap,
 }: TooltipProps) => {
   const elementToWrapRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState({ x: 50, y: 200 });
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isShowed, setIsShowed] = useState(false);
 
-  const onMouseEnter = () => {
+  const onMouseEnter = useCallback(() => {
     setIsShowed(true);
-  };
+  }, []);
 
-  const onMouseLeave = () => {
+  const onMouseLeave = useCallback(() => {
     setIsShowed(false);
-  };
+  }, []);
 
   useEffect(() => {
     const elementToWrap = elementToWrapRef.current;
@@ -36,11 +36,11 @@ export const Tooltip = ({
   }, []);
   return (
     <>
-      {isShowed && (
+      {(
         <article
           style={{ left: `${coords.x}px`, top: `${coords.y}px` }}
           id="tooltip"
-          className={styles.tooltip}
+          className={`tooltip ${isShowed ? 'tooltip__visible' : ''} `}
         >
           {tooltipContent}
         </article>
