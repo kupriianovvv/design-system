@@ -1,20 +1,21 @@
-import { LegacyRef, forwardRef } from "react";
+import { LegacyRef, MouseEventHandler, forwardRef } from "react";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
+
+type TestElementProps = {
+  onMouseEnter: MouseEventHandler<HTMLDivElement>;
+  onMouseLeave: MouseEventHandler<HTMLDivElement>;
+};
 
 const TestElement = forwardRef(
   (
-    props: Record<string, unknown> & {
-      onMouseEnter: () => void;
-      onMouseLeave: () => void;
-    },
+    { onMouseEnter, onMouseLeave }: TestElementProps,
     ref?: LegacyRef<HTMLDivElement>
   ) => {
     return (
       <div
-        {...props}
         ref={ref}
-        onMouseEnter={props.onMouseEnter}
-        onMouseLeave={props.onMouseLeave}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         style={{
           width: "200px",
           height: "100px",
