@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getTooltipCoords } from "../utils/getTooltipCoords";
+import { Position } from "../types/position";
 
-export const useTooltip = () => {
+export const useTooltip = (position: Position) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const elementToWrapRef = useRef<HTMLDivElement>(null);
 
@@ -25,12 +26,12 @@ export const useTooltip = () => {
     }
 
     const { x, y } = getTooltipCoords({
-      position: "left-start",
+      position,
       elementToWrap,
       tooltip,
     });
     setCoords({ x, y });
-  }, []);
+  }, [position]);
 
   return {
     coords,

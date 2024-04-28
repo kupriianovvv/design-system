@@ -1,7 +1,4 @@
-type FirstCoordinate = "left" | "top" | "bottom" | "right";
-type SecondCoordinate = "start" | "center" | "end";
-
-export type Position = `${FirstCoordinate}-${SecondCoordinate}`;
+import { Position } from "../types/position";
 
 type GetTooltipCoords = {
   position: Position;
@@ -20,13 +17,22 @@ const getTooltipCoords = ({
     const x = elementToWrapRect.x;
     const y = elementToWrapRect.y - tooltip.offsetHeight;
     return { x, y };
-  } 
-  else {
+  } else if (position === "top-center") {
+    const x =
+      elementToWrapRect.x +
+      elementToWrap.offsetWidth / 2 -
+      tooltip.offsetWidth / 2;
+    const y = elementToWrapRect.y - tooltip.offsetHeight;
+    return { x, y };
+  } else if (position === "top-end") {
+    const x = elementToWrapRect.right - tooltip.offsetWidth;
+    const y = elementToWrapRect.y - tooltip.offsetHeight;
+    return { x, y };
+  } else {
     const x = elementToWrapRect.x;
     const y = elementToWrapRect.y - tooltip.offsetHeight;
-    return { x, y}
+    return { x, y };
   }
 };
 
-
-export { getTooltipCoords }
+export { getTooltipCoords };

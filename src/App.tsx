@@ -1,7 +1,11 @@
 import { TooltipDemo } from "./demos/Tooltip/TooltipDemo";
 
 function App() {
-  return <><TooltipDemo /></>;
+  return (
+    <>
+      <TooltipDemo />
+    </>
+  );
 }
 
 export default App;

@@ -35,6 +35,7 @@ const tooltipContent = "tooltip";
 export const TooltipDemo = () => {
   return (
     <Tooltip
+      position="top-end"
       tooltipContent={tooltipContent}
       renderElementToWrap={(elementRef, onMouseEnter, onMouseLeave) => {
         return (

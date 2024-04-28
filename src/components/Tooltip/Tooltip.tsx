@@ -1,8 +1,10 @@
 import { ReactElement, RefObject } from "react";
 import "./Tooltip.css";
 import { useTooltip } from "./hooks/useTooltip";
+import { Position } from "./types/position";
 
 type TooltipProps = {
+  position: Position;
   tooltipContent: string;
   renderElementToWrap: (
     ref: RefObject<HTMLDivElement>,
@@ -12,6 +14,7 @@ type TooltipProps = {
 };
 
 export const Tooltip = ({
+  position,
   tooltipContent,
   renderElementToWrap,
 }: TooltipProps) => {
@@ -22,7 +25,7 @@ export const Tooltip = ({
     onMouseLeave,
     elementToWrapRef,
     tooltipRef,
-  } = useTooltip();
+  } = useTooltip(position);
 
   return (
     <>

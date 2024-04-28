@@ -4,6 +4,7 @@
     background-color: green;
     position: absolute;
     visibility: hidden;
+    text-align: center;
 }
 
 .tooltip__visible {
