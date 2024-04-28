@@ -15,19 +15,26 @@ export const Tooltip = ({
   tooltipContent,
   renderElementToWrap,
 }: TooltipProps) => {
-
-  const {coords, isShowed, onMouseEnter, onMouseLeave, elementToWrapRef} = useTooltip();
+  const {
+    coords,
+    isShowed,
+    onMouseEnter,
+    onMouseLeave,
+    elementToWrapRef,
+    tooltipRef,
+  } = useTooltip();
 
   return (
     <>
-      {(
+      {
         <article
           style={{ left: `${coords.x}px`, top: `${coords.y}px` }}
-          className={`tooltip ${isShowed ? 'tooltip__visible' : ''}`.trim()}
+          className={`tooltip ${isShowed ? "tooltip__visible" : ""}`.trim()}
+          ref={tooltipRef}
         >
           {tooltipContent}
         </article>
-      )}
+      }
 
       {renderElementToWrap(elementToWrapRef, onMouseEnter, onMouseLeave)}
     </>
