@@ -74,9 +74,7 @@ const getTooltipCoords = ({
     const y = elementToWrapRect.bottom - tooltip.offsetHeight;
     return { x, y };
   } else {
-    const x = elementToWrapRect.x;
-    const y = elementToWrapRect.y - tooltip.offsetHeight;
-    return { x, y };
+    throw new Error("position is incorrect");
   }
 };
 
