@@ -43,6 +43,21 @@ const getTooltipCoords = ({
     const x = elementToWrapRect.x - tooltip.offsetWidth;
     const y = elementToWrapRect.bottom - tooltip.offsetHeight;
     return { x, y };
+  } else if (position === "bottom-start") {
+    const x = elementToWrapRect.x;
+    const y = elementToWrapRect.bottom;
+    return { x, y };
+  } else if (position === "bottom-center") {
+    const x =
+      elementToWrapRect.x +
+      elementToWrap.offsetWidth / 2 -
+      tooltip.offsetWidth / 2;
+    const y = elementToWrapRect.bottom;
+    return { x, y };
+  } else if (position === "bottom-end") {
+    const x = elementToWrapRect.right - tooltip.offsetWidth;
+    const y = elementToWrapRect.bottom;
+    return { x, y };
   } else {
     const x = elementToWrapRect.x;
     const y = elementToWrapRect.y - tooltip.offsetHeight;
