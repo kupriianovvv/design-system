@@ -34,6 +34,25 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    position: {
+      control: "select",
+      options: [
+        "left-start",
+        "left-center",
+        "left-right",
+        "top-start",
+        "top-center",
+        "top-end",
+        "right-start",
+        "right-center",
+        "right-end",
+        "bottom-start",
+        "bottom-center",
+        "bottom-end",
+      ],
+    },
+  },
   args: {
     tooltipContent: "Tooltip text",
     position: "top-start",
