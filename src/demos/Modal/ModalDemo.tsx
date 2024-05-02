@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import { Modal } from "../../components/Modal/Modal";
 import { useModal } from "../../components/Modal/hooks/useModal";
 
@@ -16,12 +15,19 @@ const RandomText = () => {
   );
 };
 
-const renderContent = ({ onClose }) => {
+const RandomContent = ({ onClose }: { onClose: () => void }) => {
   return (
-    <div>
-      <div>My cool content</div>
-      <button onClick={onClose}>Close button</button>
-    </div>
+    <>
+      <button onClick={onClose}>[x]</button>
+      <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. In sed dolorem
+        ea veritatis aperiam error voluptate, blanditiis, soluta sunt rem quam,
+        at deserunt consequuntur vero! Alias veritatis officia earum ad? Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Eveniet, praesentium
+        illum! Perferendis autem libero delectus rem odit veniam accusantium a
+        hic, voluptate vitae ex dolor doloribus voluptatem alias, illum est!
+      </div>
+    </>
   );
 };
 
@@ -32,7 +38,9 @@ export const ModalDemo = () => {
     <>
       <button onClick={onOpen}>Open modal</button>
       <RandomText />
-      <Modal isOpened={isOpened} onOpen={onOpen} onClose={onClose} renderContent={renderContent} />
+      <Modal isOpened={isOpened} onClose={onClose}>
+        <RandomContent onClose={onClose} />
+      </Modal>
     </>
   );
 };

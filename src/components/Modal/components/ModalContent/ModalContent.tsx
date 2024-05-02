@@ -1,10 +1,15 @@
+import { ReactNode } from 'react'
 import './ModalContent.css'
 
-export const ModalContent = ({onClose, content}) => {
+type ModalContentProps = {
+    children: ReactNode
+}
+
+export const ModalContent = ({children}: ModalContentProps) => {
 
     return (
         <article className='modal-content'>
-            {content}
+            {children}
         </article>
     )
 }

@@ -1,6 +1,9 @@
 import './ModalOverlay.css'
 
-export const ModalOverlay = ({ onClose }) => {
+type ModalOverlay = {
+    onClose: () => void
+}
+export const ModalOverlay = ({ onClose }: ModalOverlay) => {
     return (
         <div onClick={onClose} className='modal-overlay'></div>
     )
