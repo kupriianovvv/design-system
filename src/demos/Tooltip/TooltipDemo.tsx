@@ -9,7 +9,7 @@ type TestElementProps = {
 const TestElement = forwardRef(
   (
     { onMouseEnter, onMouseLeave }: TestElementProps,
-    ref?: LegacyRef<HTMLDivElement>
+    ref?: LegacyRef<HTMLDivElement>,
   ) => {
     return (
       <div
@@ -27,17 +27,15 @@ const TestElement = forwardRef(
         testElement
       </div>
     );
-  }
+  },
 );
 
 const tooltipContent = "tooltip";
 
 export const TooltipDemo = () => {
   return (
-    <Tooltip
-      position="right-end"
-      tooltipContent={tooltipContent}
-      renderElementToWrap={(elementRef, onMouseEnter, onMouseLeave) => {
+    <Tooltip position="right-end" tooltipContent={tooltipContent}>
+      {(elementRef, onMouseEnter, onMouseLeave) => {
         return (
           <TestElement
             ref={elementRef}
@@ -46,6 +44,6 @@ export const TooltipDemo = () => {
           />
         );
       }}
-    ></Tooltip>
+    </Tooltip>
   );
 };

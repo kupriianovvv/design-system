@@ -6,7 +6,7 @@ import { Position } from "./types/position";
 type TooltipProps = {
   position: Position;
   tooltipContent: string;
-  renderElementToWrap: (
+  children: (
     ref: RefObject<HTMLDivElement>,
     onMouseEnter: () => void,
     onMouseLeave: () => void
@@ -16,7 +16,7 @@ type TooltipProps = {
 export const Tooltip = ({
   position,
   tooltipContent,
-  renderElementToWrap,
+  children,
 }: TooltipProps) => {
   const {
     coords,
@@ -39,7 +39,7 @@ export const Tooltip = ({
         </article>
       }
 
-      {renderElementToWrap(elementToWrapRef, onMouseEnter, onMouseLeave)}
+      {children(elementToWrapRef, onMouseEnter, onMouseLeave)}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ModalDemo } from "./demos/Modal/ModalDemo";
 import { useOnCloseStore } from "./store";
+import { TooltipDemo } from "./demos/Tooltip/TooltipDemo";
 
 function App() {
   const handleESC = useOnCloseStore(store => store.handleESC);
@@ -14,7 +15,7 @@ function App() {
   }, [])
   return (
     <>
-      <ModalDemo />
+      <TooltipDemo />
     </>
   );
 }
