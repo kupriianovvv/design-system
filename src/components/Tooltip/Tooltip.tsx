@@ -1,4 +1,4 @@
-import { ReactElement, RefObject } from "react";
+import { ReactElement } from "react";
 import "./Tooltip.css";
 import { useTooltip } from "./hooks/useTooltip";
 import { Position } from "./types/position";
@@ -7,9 +7,8 @@ type TooltipProps = {
   position: Position;
   tooltipContent: string;
   children: (
-    ref: RefObject<HTMLDivElement>,
-    onMouseEnter: () => void,
-    onMouseLeave: () => void
+    onMouseEnter: (event: React.MouseEvent) => void,
+    onMouseLeave: () => void,
   ) => ReactElement;
 };
 
@@ -18,14 +17,8 @@ export const Tooltip = ({
   tooltipContent,
   children,
 }: TooltipProps) => {
-  const {
-    coords,
-    isShowed,
-    onMouseEnter,
-    onMouseLeave,
-    elementToWrapRef,
-    tooltipRef,
-  } = useTooltip(position);
+  const { coords, isShowed, onMouseEnter, onMouseLeave, tooltipRef } =
+    useTooltip(position);
 
   return (
     <>
@@ -39,7 +32,7 @@ export const Tooltip = ({
         </article>
       }
 
-      {children(elementToWrapRef, onMouseEnter, onMouseLeave)}
+      {children(onMouseEnter, onMouseLeave)}
     </>
   );
 };
