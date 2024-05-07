@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { getTooltipCoords } from "../utils/getTooltipCoords";
 import { Position } from "../types/position";
 
@@ -10,28 +10,30 @@ export const useTooltip = (position: Position) => {
 
   const [isShowed, setIsShowed] = useState(false);
 
-  const onMouseEnter = useCallback(() => {
-    setIsShowed(true);
-  }, []);
-
-  const onMouseLeave = useCallback(() => {
-    setIsShowed(false);
-  }, []);
-
-  useEffect(() => {
-    const elementToWrap = elementToWrapRef.current;
+  const onMouseEnter = useCallback((event: React.MouseEvent) => {
+    const child = event.target;
     const tooltip = tooltipRef.current;
-    if (!elementToWrap || !tooltip) {
+
+    if (!child || !tooltip) {
+      return;
+    }
+    if (!(child instanceof HTMLElement)) {
       return;
     }
 
     const { x, y } = getTooltipCoords({
       position,
-      elementToWrap,
+      elementToWrap: child,
       tooltip,
     });
     setCoords({ x, y });
+
+    setIsShowed(true);
   }, [position]);
+
+  const onMouseLeave = useCallback(() => {
+    setIsShowed(false);
+  }, []);
 
   return {
     coords,

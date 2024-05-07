@@ -2,7 +2,7 @@ import { Position } from "../types/position";
 
 type GetTooltipCoords = {
   position: Position;
-  elementToWrap: HTMLDivElement;
+  elementToWrap: HTMLElement;
   tooltip: HTMLDivElement;
 };
 
