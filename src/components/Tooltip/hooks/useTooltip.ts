@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { getTooltipCoords } from "../utils/getTooltipCoords";
 import { Position } from "../types/position";
 
@@ -6,7 +6,7 @@ export const useTooltip = (position: Position) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const elementToWrapRef = useRef<HTMLDivElement>(null);
 
-  const [coords, setCoords] = useState({ x: 140, y: 250 });
+  const [coords, setCoords] = useState({ x: -100, y: -100 });
 
   const [isShowed, setIsShowed] = useState(false);
 
