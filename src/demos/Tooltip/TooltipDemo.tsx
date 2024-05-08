@@ -1,4 +1,4 @@
-import { MouseEventHandler, forwardRef } from "react";
+import { MouseEventHandler, useEffect } from "react";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 
 type TestElementProps = {
@@ -6,25 +6,26 @@ type TestElementProps = {
   onMouseLeave: MouseEventHandler<HTMLDivElement>;
 };
 
-const TestElement = forwardRef(
-  ({ onMouseEnter, onMouseLeave }: TestElementProps) => {
-    return (
-      <div
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        style={{
-          width: "200px",
-          height: "100px",
-          backgroundColor: "pink",
-          marginLeft: "300px",
-          marginTop: "500px",
-        }}
-      >
-        testElement
-      </div>
-    );
-  },
-);
+const TestElement = ({ onMouseEnter, onMouseLeave }: TestElementProps) => {
+  useEffect(() => {
+    document.getElementById('test').addEventListener("mouseenter", onMouseEnter);
+    document.getElementById('test').addEventListener("mouseleave", onMouseLeave);
+  }, [onMouseEnter, onMouseLeave]);
+  return (
+    <div
+      id='test'
+      style={{
+        width: "200px",
+        height: "100px",
+        backgroundColor: "pink",
+        marginLeft: "300px",
+        marginTop: "500px",
+      }}
+    >
+      testElement
+    </div>
+  );
+};
 
 const tooltipContent = "tooltip";
 
