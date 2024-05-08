@@ -8,4 +8,5 @@
 
     z-index: 2000;
     background-color: white;
+    overflow-y: scroll;
 }

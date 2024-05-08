@@ -25,7 +25,7 @@ const RandomContent = ({ onClose }: { onClose: () => void }) => {
         at deserunt consequuntur vero! Alias veritatis officia earum ad? Lorem
         ipsum dolor sit amet consectetur adipisicing elit. Eveniet, praesentium
         illum! Perferendis autem libero delectus rem odit veniam accusantium a
-        hic, voluptate vitae ex dolor doloribus voluptatem alias, illum est!
+        hic, voluptate vitae ex dolor doloribus!
       </div>
     </>
   );

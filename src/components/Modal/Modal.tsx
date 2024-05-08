@@ -3,6 +3,7 @@ import { ModalContent } from "./components/ModalContent/ModalContent";
 import { ReactNode, useEffect, useId } from "react";
 import { createPortal } from "react-dom";
 import { useOnCloseStore } from "../../store";
+import { Transition } from "@headlessui/react";
 
 type ModalProps = {
   isOpened: boolean;
@@ -30,12 +31,21 @@ export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
     push({ id, onClose });
   }, [isOpened]);
 
-  if (!isOpened) return null;
   return createPortal(
-    <div>
-      <ModalOverlay onClose={realOnClose} />
-      <ModalContent>{children}</ModalContent>
-    </div>,
+    <Transition
+      show={isOpened}
+      enter="transition-opacity duration-300"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="transition-opacity duration-300"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      <div>
+        <ModalOverlay onClose={realOnClose} />
+        <ModalContent>{children}</ModalContent>
+      </div>
+    </Transition>,
     document.getElementById("modal-root") as HTMLElement,
   );
 };
