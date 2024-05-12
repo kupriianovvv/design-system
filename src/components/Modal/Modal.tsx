@@ -2,8 +2,8 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
 import { ModalContent } from "./components/ModalContent/ModalContent";
 import { ReactNode, useEffect, useId } from "react";
 import { createPortal } from "react-dom";
-import { useOnCloseStore } from "../../store";
 import { Transition } from "@headlessui/react";
+import { store } from "../../store";
 
 type ModalProps = {
   isOpened: boolean;
@@ -13,22 +13,25 @@ type ModalProps = {
 
 export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
   const id = useId();
-  const push = useOnCloseStore((store) => store.push);
-  const onCloseFuncs = useOnCloseStore((store) => store.onCloseFuncs);
-  const remove = useOnCloseStore((store) => store.delete);
+  const onCloseFuncs = store.getOnCloseFuncs()
+
+  console.log(onCloseFuncs)
+
+
 
   const realOnClose = () => {
-    remove(id);
+    store.delete(id);
     onClose();
   };
 
   console.log(onCloseFuncs);
   useEffect(() => {
     if (!isOpened) {
-      remove(id);
+      store.delete(id);
       return;
     }
-    push({ id, onClose });
+    console.log({id, onClose})
+    store.push({ id, onClose });
   }, [isOpened]);
 
   return createPortal(

@@ -1,39 +1,30 @@
-import { create } from "zustand";
-
 type OnClose = () => void;
 
 type OnCloseItem = { id: string; onClose: OnClose };
 
-type State = {
-  onCloseFuncs: Array<OnCloseItem>;
-};
-
-type Actions = {
-  push: (onCloseItem: OnCloseItem) => void;
-  handleESC: () => void;
-  pop: () => void;
-  delete: (id: string) => void;
-};
-
-export const useOnCloseStore = create<State & Actions>()((set, get) => ({
-  onCloseFuncs: [],
-  push: ({ id, onClose }) => {
-    set((state) => ({
-      onCloseFuncs: state.onCloseFuncs.concat({ id, onClose }),
-    }));
-  },
-  pop: () =>
-    set((state) => ({ onCloseFuncs: state.onCloseFuncs.slice(0, -1) })),
-  delete: (id: string) =>
-    set((state) => ({
-      onCloseFuncs: state.onCloseFuncs.filter(
-        ({ id: onCloseId }) => onCloseId !== id,
-      ),
-    })),
-  handleESC: () => {
-    const onCloseItem = get().onCloseFuncs.pop();
+class Store {
+  private onCloseFuncs: OnCloseItem[] = [];
+  push = ({ id, onClose }: { id: string; onClose: OnClose }) => {
+    this.onCloseFuncs = this.onCloseFuncs.concat({ id, onClose });
+  };
+  pop = () => {
+    this.onCloseFuncs = this.onCloseFuncs.slice(0, -1);
+  };
+  delete = (id: string) => {
+    this.onCloseFuncs = this.onCloseFuncs.filter(
+      ({ id: onCloseId }) => onCloseId !== id,
+    );
+  };
+  handleESC = () => {
+    const onCloseItem = this.onCloseFuncs.pop();
     if (onCloseItem) {
       onCloseItem.onClose();
     }
-  },
-}));
+  };
+  getOnCloseFuncs = () => {
+    return this.onCloseFuncs
+  }
+}
+
+
+export const store = new Store();

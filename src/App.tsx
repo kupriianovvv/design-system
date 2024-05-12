@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useOnCloseStore } from "./store";
+import { store } from "./store";
 import { TooltipDemo } from "./demos/Tooltip/TooltipDemo";
 import { ModalDemo } from "./demos/Modal/ModalDemo";
 
 function App() {
-  const handleESC = useOnCloseStore((store) => store.handleESC);
+  const handleESC = store.handleESC
 
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
@@ -16,6 +16,7 @@ function App() {
   return (
     <>
       <TooltipDemo />
+      <ModalDemo />
     </>
   );
 }
