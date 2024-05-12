@@ -20,15 +20,23 @@ export const Tooltip = ({
 }: TooltipProps) => {
   const { coords, isShowed, onMouseEnter, onMouseLeave, tooltipRef } =
     useTooltip(position);
-  console.log(isShowed)
+  console.log(isShowed);
 
   return (
     <>
-      <Transition show={isShowed}>
+      <Transition
+        show={isShowed}
+        enter="transition-opacity duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-300"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
         <article
-          id={'tooltip'}
+          id={"tooltip"}
           style={{ left: `${coords.x}px`, top: `${coords.y}px` }}
-          className={'tooltip'}
+          className={"tooltip"}
           ref={tooltipRef}
         >
           {tooltipContent}
