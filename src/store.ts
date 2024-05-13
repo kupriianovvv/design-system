@@ -26,4 +26,12 @@ class Store {
   };
 }
 
-export const store = new Store();
+const store = new Store();
+
+document.addEventListener("keydown", (event) => {
+  if (event.code === "Escape") {
+    store.handleESC();
+  }
+});
+
+export {store}
