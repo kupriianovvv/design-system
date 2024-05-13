@@ -13,25 +13,21 @@ type ModalProps = {
 
 export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
   const id = useId();
-  const onCloseFuncs = store.getOnCloseFuncs()
-
-  console.log(onCloseFuncs)
-
-
 
   const realOnClose = () => {
     store.delete(id);
     onClose();
   };
 
-  console.log(onCloseFuncs);
   useEffect(() => {
     if (!isOpened) {
-      store.delete(id);
       return;
     }
-    console.log({id, onClose})
     store.push({ id, onClose });
+
+    return () => {
+      store.delete(id);
+    };
   }, [isOpened]);
 
   return createPortal(

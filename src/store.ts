@@ -22,9 +22,8 @@ class Store {
     }
   };
   getOnCloseFuncs = () => {
-    return this.onCloseFuncs
-  }
+    return this.onCloseFuncs;
+  };
 }
-
 
 export const store = new Store();

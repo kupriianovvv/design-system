@@ -4,7 +4,7 @@ import { TooltipDemo } from "./demos/Tooltip/TooltipDemo";
 import { ModalDemo } from "./demos/Modal/ModalDemo";
 
 function App() {
-  const handleESC = store.handleESC
+  const handleESC = store.handleESC;
 
   useEffect(() => {
     document.addEventListener("keydown", (event) => {
