@@ -32,6 +32,8 @@ export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
 
   return createPortal(
     <Transition
+      appear={true}
+      unmount={false}
       show={isOpened}
       enter="transition-opacity duration-300"
       enterFrom="opacity-0"

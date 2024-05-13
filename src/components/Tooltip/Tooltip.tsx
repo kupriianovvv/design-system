@@ -25,6 +25,8 @@ export const Tooltip = ({
   return (
     <>
       <Transition
+        appear={true}
+        unmount={false}
         show={isShowed}
         enter="transition-opacity duration-300"
         enterFrom="opacity-0"
