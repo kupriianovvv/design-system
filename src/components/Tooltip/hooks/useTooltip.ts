@@ -12,7 +12,7 @@ export const useTooltip = (position: Position) => {
 
   const onMouseEnter = useCallback(
     (event: React.MouseEvent) => {
-      elementToWrapRef.current = event.target;
+      elementToWrapRef.current = event.currentTarget;
       setIsShowed(true);
     },
     [position],
