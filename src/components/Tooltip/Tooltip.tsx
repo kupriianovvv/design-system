@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import "./Tooltip.css";
 import { useTooltip } from "./hooks/useTooltip";
 import { Position } from "./types/position";
+import { CSSTransition } from "react-transition-group";
 
 type TooltipProps = {
   position: Position;
@@ -21,17 +22,18 @@ export const Tooltip = ({
     useTooltip(position);
 
   return (
-    <>
+    <div>
+      <CSSTransition nodeRef={tooltipRef} in={isShowed} timeout={500} classNames="my-node" mountOnEnter={true} unmountOnExit={true}>
       <article
         id={"tooltip"}
         style={{ left: `${coords.x}px`, top: `${coords.y}px` }}
         className={"tooltip"}
         ref={tooltipRef}
-        hidden={!isShowed}
       >
         {tooltipContent}
       </article>
+      </CSSTransition>
       {children(onMouseEnter, onMouseLeave)}
-    </>
+    </div>
   );
 };
