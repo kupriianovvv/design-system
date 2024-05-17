@@ -6,6 +6,23 @@
     bottom: 0;
 
     background-color: black;
-    opacity: 0.4;
+    opacity: 0.3;
     z-index: 1000;
 }
+
+
+.my-nodeOv-enter {
+    opacity: 0;
+  }
+  .my-nodeOv-enter-active {
+    opacity: 0.3;
+    transition: opacity 500ms;
+  }
+  .my-nodeOv-exit {
+    opacity: 0.3;
+    transition: opacity 500ms;
+  }
+  .my-nodeOv-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }

@@ -31,22 +31,10 @@ export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
   }, [isOpened]);
 
   return createPortal(
-    <Transition
-      appear={true}
-      unmount={false}
-      show={isOpened}
-      enter="transition-opacity duration-300"
-      enterFrom="opacity-0"
-      enterTo="opacity-100"
-      leave="transition-opacity duration-300"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
-    >
       <div>
-        <ModalOverlay onClose={realOnClose} />
-        <ModalContent>{children}</ModalContent>
-      </div>
-    </Transition>,
+        <ModalOverlay isOpened={isOpened} onClose={realOnClose}/>
+        <ModalContent isOpened={isOpened}>{children}</ModalContent>
+      </div>,
     document.getElementById("modal-root") as HTMLElement,
   );
 };

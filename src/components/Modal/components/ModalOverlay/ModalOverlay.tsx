@@ -1,10 +1,23 @@
-import './ModalOverlay.css'
+import { useRef } from "react";
+import "./ModalOverlay.css";
+import { CSSTransition } from "react-transition-group";
 
 type ModalOverlay = {
-    onClose: () => void
-}
-export const ModalOverlay = ({ onClose }: ModalOverlay) => {
-    return (
-        <div onClick={onClose} className='modal-overlay'></div>
-    )
-}
+  onClose: () => void;
+};
+export const ModalOverlay = ({ onClose, isOpened }: ModalOverlay) => {
+  console.log(isOpened)
+  const nodeRef = useRef(null);
+  return (
+    <CSSTransition
+      nodeRef={nodeRef}
+      in={isOpened}
+      timeout={500}
+      classNames="my-nodeOv"
+      mountOnEnter={true}
+      unmountOnExit={true}
+    >
+      <div onClick={onClose} ref={nodeRef} className="modal-overlay"></div>
+    </CSSTransition>
+  );
+};
