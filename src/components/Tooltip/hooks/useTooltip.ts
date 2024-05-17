@@ -24,8 +24,6 @@ export const useTooltip = (position: Position) => {
       const child = elementToWrapRef.current;
       const tooltip = document.getElementById("tooltip")!;
       if (!child || !tooltip) {
-        console.log(child, tooltip);
-        console.log("damn return!");
         return;
       }
       if (!(child instanceof HTMLElement)) {
