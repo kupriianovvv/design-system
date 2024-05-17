@@ -19,24 +19,21 @@ export const useTooltip = (position: Position) => {
   );
 
   useLayoutEffect(() => {
+    const child = elementToWrapRef.current;
+    const tooltip = document.getElementById("tooltip")!;
+    if (!child || !tooltip) {
+      return;
+    }
+    if (!(child instanceof HTMLElement)) {
+      return;
+    }
 
-    requestAnimationFrame(() => {
-      const child = elementToWrapRef.current;
-      const tooltip = document.getElementById("tooltip")!;
-      if (!child || !tooltip) {
-        return;
-      }
-      if (!(child instanceof HTMLElement)) {
-        return;
-      }
-
-      const { x, y } = getTooltipCoords({
-        position,
-        elementToWrap: child,
-        tooltip,
-      });
-      setCoords({ x, y });
+    const { x, y } = getTooltipCoords({
+      position,
+      elementToWrap: child,
+      tooltip,
     });
+    setCoords({ x, y });
   }, [isShowed]);
 
   const onMouseLeave = useCallback(() => {
