@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect } from "react";
+import { MouseEventHandler } from "react";
 import { Tooltip } from "../../components/Tooltip/Tooltip";
 
 type TestElementProps = {
@@ -7,13 +7,10 @@ type TestElementProps = {
 };
 
 const TestElement = ({ onMouseEnter, onMouseLeave }: TestElementProps) => {
-  useEffect(() => {
-    document.getElementById('test').addEventListener("mouseenter", onMouseEnter);
-    document.getElementById('test').addEventListener("mouseleave", onMouseLeave);
-  }, [onMouseEnter, onMouseLeave]);
   return (
     <div
-      id='test'
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={{
         width: "200px",
         height: "100px",
