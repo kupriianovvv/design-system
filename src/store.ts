@@ -5,10 +5,10 @@ type OnCloseItem = { id: string; onClose: OnClose };
 class Store {
   private onCloseFuncs: OnCloseItem[] = [];
   push = ({ id, onClose }: { id: string; onClose: OnClose }) => {
-    this.onCloseFuncs = this.onCloseFuncs.concat({ id, onClose });
+    this.onCloseFuncs.push({ id, onClose })
   };
   pop = () => {
-    this.onCloseFuncs = this.onCloseFuncs.slice(0, -1);
+    return this.onCloseFuncs.pop();
   };
   delete = (id: string) => {
     this.onCloseFuncs = this.onCloseFuncs.filter(
@@ -16,7 +16,7 @@ class Store {
     );
   };
   handleESC = () => {
-    const onCloseItem = this.onCloseFuncs.pop();
+    const onCloseItem = this.pop();
     if (onCloseItem) {
       onCloseItem.onClose();
     }
