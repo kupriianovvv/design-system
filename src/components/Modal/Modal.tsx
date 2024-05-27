@@ -2,7 +2,6 @@ import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
 import { ModalContent } from "./components/ModalContent/ModalContent";
 import { ReactNode, useEffect, useId } from "react";
 import { createPortal } from "react-dom";
-import { Transition } from "@headlessui/react";
 import { store } from "../../store";
 
 type ModalProps = {
@@ -28,7 +27,7 @@ export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
     return () => {
       store.delete(id);
     };
-  }, [isOpened]);
+  }, [isOpened,id, onClose]);
 
   return createPortal(
       <div>

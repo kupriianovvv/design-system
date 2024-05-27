@@ -4,7 +4,7 @@ import { Position } from "../types/position";
 
 export const useTooltip = (position: Position) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const elementToWrapRef = useRef<HTMLDivElement>(null);
+  const elementToWrapRef = useRef<HTMLElement | null>(null);
 
   const [coords, setCoords] = useState({ x: -100, y: -100 });
 
@@ -12,10 +12,11 @@ export const useTooltip = (position: Position) => {
 
   const onMouseEnter = useCallback(
     (event: React.MouseEvent) => {
+      if (!(event.currentTarget instanceof HTMLElement)) return;
       elementToWrapRef.current = event.currentTarget;
       setIsShowed(true);
     },
-    [position],
+    [],
   );
 
   useLayoutEffect(() => {
@@ -34,7 +35,7 @@ export const useTooltip = (position: Position) => {
       tooltip,
     });
     setCoords({ x, y });
-  }, [isShowed]);
+  }, [isShowed, position]);
 
   const onMouseLeave = useCallback(() => {
     setIsShowed(false);

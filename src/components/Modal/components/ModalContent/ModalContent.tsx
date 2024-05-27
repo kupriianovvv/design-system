@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 
 type ModalContentProps = {
   children: ReactNode;
+  isOpened: boolean;
 };
 
 export const ModalContent = ({ children, isOpened }: ModalContentProps) => {

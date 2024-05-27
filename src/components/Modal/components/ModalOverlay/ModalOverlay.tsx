@@ -2,11 +2,12 @@ import { useRef } from "react";
 import "./ModalOverlay.css";
 import { CSSTransition } from "react-transition-group";
 
-type ModalOverlay = {
+type ModalOverlayProps = {
   onClose: () => void;
+  isOpened: boolean;
 };
-export const ModalOverlay = ({ onClose, isOpened }: ModalOverlay) => {
-  console.log(isOpened)
+export const ModalOverlay = ({ onClose, isOpened }: ModalOverlayProps) => {
+  console.log(isOpened);
   const nodeRef = useRef(null);
   return (
     <CSSTransition

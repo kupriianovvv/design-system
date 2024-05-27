@@ -3,7 +3,7 @@ import { Position } from "../types/position";
 type GetTooltipCoords = {
   position: Position;
   elementToWrap: HTMLElement;
-  tooltip: HTMLDivElement;
+  tooltip: HTMLElement;
 };
 
 const getTooltipCoords = ({
