@@ -1,8 +1,10 @@
 import { ModalOverlay } from "./components/ModalOverlay/ModalOverlay";
 import { ModalContent } from "./components/ModalContent/ModalContent";
-import { ReactNode, useEffect, useId } from "react";
+import { ReactNode, useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
 import { store } from "../../store";
+import { CSSTransition } from "react-transition-group";
+import './Modal.css'
 
 type ModalProps = {
   isOpened: boolean;
@@ -12,6 +14,7 @@ type ModalProps = {
 
 export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
   const id = useId();
+  const modalRef = useRef(null);
 
   const realOnClose = () => {
     store.delete(id);
@@ -27,13 +30,22 @@ export const Modal = ({ isOpened, onClose, children }: ModalProps) => {
     return () => {
       store.delete(id);
     };
-  }, [isOpened,id, onClose]);
+  }, [isOpened, id, onClose]);
 
   return createPortal(
-      <div>
-        <ModalOverlay isOpened={isOpened} onClose={realOnClose}/>
+    <CSSTransition
+      nodeRef={modalRef}
+      in={isOpened}
+      timeout={1000}
+      classNames="modal"
+      mountOnEnter={true}
+      unmountOnExit={true}
+    >
+      <div ref={modalRef}>
+        <ModalOverlay isOpened={isOpened} onClose={realOnClose} />
         <ModalContent isOpened={isOpened}>{children}</ModalContent>
-      </div>,
+      </div>
+    </CSSTransition>,
     document.getElementById("modal-root") as HTMLElement,
   );
 };

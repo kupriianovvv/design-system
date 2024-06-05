@@ -9,16 +9,5 @@ type ModalOverlayProps = {
 export const ModalOverlay = ({ onClose, isOpened }: ModalOverlayProps) => {
   console.log(isOpened);
   const nodeRef = useRef(null);
-  return (
-    <CSSTransition
-      nodeRef={nodeRef}
-      in={isOpened}
-      timeout={500}
-      classNames="my-nodeOv"
-      mountOnEnter={true}
-      unmountOnExit={true}
-    >
-      <div onClick={onClose} ref={nodeRef} className="modal-overlay"></div>
-    </CSSTransition>
-  );
+  return <div onClick={onClose} ref={nodeRef} className="modal-overlay"></div>;
 };

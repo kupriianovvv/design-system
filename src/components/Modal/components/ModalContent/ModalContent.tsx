@@ -10,15 +10,8 @@ type ModalContentProps = {
 export const ModalContent = ({ children, isOpened }: ModalContentProps) => {
   const nodeRef = useRef(null);
   return (
-    <CSSTransition
-      nodeRef={nodeRef}
-      in={isOpened}
-      timeout={500}
-      classNames="my-nodef"
-      mountOnEnter={true}
-      unmountOnExit={true}
-    >
-      <article ref={nodeRef} className="modal-content">{children}</article>
-    </CSSTransition>
+    <article ref={nodeRef} className="modal-content">
+      {children}
+    </article>
   );
 };

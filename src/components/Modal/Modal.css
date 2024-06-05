@@ -1,0 +1,48 @@
+.modal-enter {
+}
+.modal-enter-active {
+  transition: opacity 1000ms;
+}
+.modal-exit {
+  transition: opacity 1000ms;
+}
+.modal-exit-active {
+  transition: opacity 1000ms;
+}
+
+
+.modal-enter .modal-content {
+  opacity: 0;
+  transition: inherit;
+}
+.modal-enter-active .modal-content {
+  transition: inherit;
+  opacity: 1;
+}
+.modal-exit .modal-content{
+  transition: inherit;
+  opacity: 1;
+}
+.modal-exit-active .modal-content {
+  transition: inherit;
+  opacity: 0;
+}
+
+
+
+.modal-enter .modal-overlay {
+  transition: inherit;
+  opacity: 0;
+}
+.modal-enter-active .modal-overlay  {
+  transition: inherit;
+  opacity: 0.3;
+}
+.modal-exit .modal-overlay {
+  transition: inherit;
+  opacity: 0.3;
+}
+.modal-exit-active .modal-overlay {
+  transition: inherit;
+  opacity: 0;
+}

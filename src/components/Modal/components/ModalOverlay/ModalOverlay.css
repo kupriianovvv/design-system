@@ -16,13 +16,10 @@
   }
   .my-nodeOv-enter-active {
     opacity: 0.3;
-    transition: opacity 500ms;
   }
   .my-nodeOv-exit {
     opacity: 0.3;
-    transition: opacity 500ms;
   }
   .my-nodeOv-exit-active {
     opacity: 0;
-    transition: opacity 500ms;
   }

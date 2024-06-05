@@ -18,13 +18,10 @@
   }
   .my-nodef-enter-active {
     opacity: 1;
-    transition: opacity 500ms;
   }
   .my-nodef-exit {
     opacity: 1;
-    transition: opacity 500ms;
   }
   .my-nodef-exit-active {
     opacity: 0;
-    transition: opacity 500ms;
   }
