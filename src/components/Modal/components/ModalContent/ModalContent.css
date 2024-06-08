@@ -10,18 +10,3 @@
     background-color: white;
     overflow-y: scroll;
 }
-
-
-
-.my-nodef-enter {
-    opacity: 0;
-  }
-  .my-nodef-enter-active {
-    opacity: 1;
-  }
-  .my-nodef-exit {
-    opacity: 1;
-  }
-  .my-nodef-exit-active {
-    opacity: 0;
-  }

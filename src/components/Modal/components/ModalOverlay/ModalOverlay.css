@@ -9,17 +9,3 @@
     opacity: 0.3;
     z-index: 1000;
 }
-
-
-.my-nodeOv-enter {
-    opacity: 0;
-  }
-  .my-nodeOv-enter-active {
-    opacity: 0.3;
-  }
-  .my-nodeOv-exit {
-    opacity: 0.3;
-  }
-  .my-nodeOv-exit-active {
-    opacity: 0;
-  }
